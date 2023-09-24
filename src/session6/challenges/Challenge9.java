@@ -9,6 +9,5 @@ public class Challenge9 {
 
     public static void countLetterFrequency(String str) {
         StringBuilder stringBuilder = new StringBuilder();
-
     }
 }
