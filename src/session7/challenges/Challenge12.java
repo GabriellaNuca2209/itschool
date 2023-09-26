@@ -11,12 +11,13 @@ public class Challenge12 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter a date and time in this format: YYYY-MM-DD HH:MM:SS");
-        String input = scanner.next();
-        scanner.close();
+        String input = scanner.nextLine();
+
         // 2023-09-25 00:50:12
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         ZoneId newTimeZone = ZoneId.of("Europe/London");
+        scanner.close();
 
         System.out.println(newTimeZone + ": " + changeTimeZone(newTimeZone, input, formatter));
     }
