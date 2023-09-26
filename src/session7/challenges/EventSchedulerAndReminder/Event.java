@@ -16,12 +16,12 @@ public class Event {
         this.reminderDateTime = reminderDateTime;
     }
 
-    public int timeUntilEvent(LocalDateTime eventDateTime) {
+    public int timeUntilEvent(LocalDateTime eventDateTime) { // don't forget to work on this
         LocalDateTime today = LocalDateTime.now();
         return eventDateTime.getDayOfYear() - today.getDayOfYear();
     }
 
-    public int timeUntilReminder(LocalDateTime reminderDateTime) {
+    public int timeUntilReminder(LocalDateTime reminderDateTime) { // don't forget to work on this as well, honey
         LocalDateTime today = LocalDateTime.now();
         return reminderDateTime.getDayOfYear() - today.getDayOfYear();
     }
