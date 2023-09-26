@@ -10,10 +10,10 @@ public class Challenge5 {
     public static void capitalizeFirstCharInWords(String str) {
         StringBuilder stringBuilder = new StringBuilder();
         String[] array = str.split(" ");
+
         for (String elem : array) {
             stringBuilder.append(String.valueOf(elem.charAt(0)).toUpperCase()).append(elem.substring(1)).append(" ");
         }
-
         System.out.println(stringBuilder);
     }
 }
