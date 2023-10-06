@@ -1,6 +1,5 @@
 package session10.challenges.vehicles.single_inheritance;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Bicycle {
@@ -8,7 +7,7 @@ public class Bicycle {
     private double speed;
     private int gear;
 
-    private List<Integer> gearScope = new ArrayList<>();
+    private List<Integer> gearScope;
 
     public Bicycle(double speed, int gear, List<Integer> gearScope) {
         this.speed = speed;
