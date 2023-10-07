@@ -1,0 +1,32 @@
+package session03.practice;
+
+public class BinaryArithmeticOperator {
+
+    public static void main(String[] args) {
+        int number1 = 10;
+        int number2 = 20;
+
+        System.out.println("Arithmetic operations with int:");
+        System.out.println(number1 + number2);
+        System.out.println(number1 - number2);
+        System.out.println(number1 * number2);
+        System.out.println(number2 / number1);
+        System.out.println(number1 % number2);
+
+        double double1 = 10.5;
+        double double2 = 4.5;
+
+        System.out.println("Arithmetic operations with double:");
+        System.out.println(double1 + double2);
+        System.out.println(double1 - double2);
+        System.out.println(double1 * double2);
+        System.out.println(double1 / double2);
+        System.out.println(double1 % double2);
+
+        short myByte1 = 3;
+        short myByte2 = 5;
+
+//        short result = myByte1 * myByte2;  <-  this leads to compile errors due to numeric promotion
+        int result = myByte1 * myByte2;
+    }
+}
