@@ -2,19 +2,13 @@ package session11.challenges.smart_home_management_system;
 
 import java.time.LocalDate;
 
+import static session11.challenges.smart_home_management_system.HomeLayout.*;
+
 public class SmartHomeApp {
 
     public static void main(String[] args) {
         LocalDate jonnyDate = LocalDate.of(1995, 8, 12);
         LocalDate susanDate = LocalDate.of(2010, 6, 23);
-
-        // Rooms
-        Room bedroom = new Room("Bedroom");
-        Room livingroom = new Room("Living Room");
-        Room bathroom = new Room("Bathroom");
-        Room kitchen = new Room("Kitchen");
-        Room mainEntrance = new Room("Entrance");
-        Room secondaryEntrance = new Room("Entrance");
 
         // Users
         Admin jonny = new Admin("Jonny", "Test", jonnyDate);
@@ -38,7 +32,8 @@ public class SmartHomeApp {
         jonny.addEntertainment(livingRoomMainMusicSys);
 
         // Manipulating devices
-        jonny.snapshot(mainEntrance);
+        jonny.turnOffLights(bedroom);
+        jonny.turnOnLights(bedroom);
 
     }
 }

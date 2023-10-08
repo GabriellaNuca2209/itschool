@@ -16,12 +16,7 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
         for (Door door : doorsDevices) {
             if (room.getRoomName().equalsIgnoreCase("bathroom")) {
                 if (door.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                    if (door.isOpen()) {
-                        door.setOpen(false);
-                        System.out.println("Door closed in " + room.getRoomName());
-                    } else {
-                        System.out.println("Already closed");
-                    }
+                    checkOpenDoor(door, room);
                 }
             }
         }
@@ -32,12 +27,7 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
         for (Door door : doorsDevices) {
             if (room.getRoomName().equalsIgnoreCase("bathroom")) {
                 if (door.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                    if (!door.isOpen()) {
-                        door.setOpen(true);
-                        System.out.println("Door opened in " + room.getRoomName());
-                    } else {
-                        System.out.println("Already opened");
-                    }
+                    checkCloseDoor(door, room);
                 }
             }
         }
@@ -48,16 +38,7 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
         for (Door door : doorsDevices) {
             if (room.getRoomName().equalsIgnoreCase("bathroom")) {
                 if (door.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                    if (!door.isOpen()) {
-                        if (!door.isLocked()) {
-                            door.setLocked(true);
-                            System.out.println("Door locked at " + room.getRoomName());
-                        } else {
-                            System.out.println("Already locked");
-                        }
-                    } else {
-                        System.out.println("Cannot lock");
-                    }
+                    checkUnlockedDoor(door, room);
                 }
             } else {
                 System.out.println("Access denied");
@@ -70,16 +51,7 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
         for (Door door : doorsDevices) {
             if (room.getRoomName().equalsIgnoreCase("bathroom")) {
                 if (door.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                    if (!door.isOpen()) {
-                        if (door.isLocked()) {
-                            door.setLocked(false);
-                            System.out.println("Door unlocked at " + room.getRoomName());
-                        } else {
-                            System.out.println("Already unlocked");
-                        }
-                    } else {
-                        System.out.println("Cannot unlock");
-                    }
+                    checkLockedDoor(door, room);
                 }
             } else {
                 System.out.println("Access denied");
@@ -123,12 +95,7 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
         for (Light light : lightsDevices) {
             if (room.getRoomName().equalsIgnoreCase("living room")) {
                 if (light.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                    if (light.isOn()) {
-                        light.setOn(false);
-                        System.out.println("Lights off in " + room.getRoomName());
-                    } else {
-                        System.out.println("Already off");
-                    }
+                    checkLightOn(light, room);
                 }
             }
         }
@@ -139,12 +106,7 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
         for (Light light : lightsDevices) {
             if (room.getRoomName().equalsIgnoreCase("living room")) {
                 if (light.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                    if (!light.isOn()) {
-                        light.setOn(true);
-                        System.out.println("Lights on in " + room.getRoomName());
-                    } else {
-                        System.out.println("Already on");
-                    }
+                    checkLightOff(light, room);
                 }
             }
         }

@@ -48,12 +48,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void turnOffLights(Room room) {
         for (Light light : lightsDevices) {
             if (light.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (light.isOn()) {
-                    light.setOn(false);
-                    System.out.println("Lights off in " + room.getRoomName());
-                } else {
-                    System.out.println("Already off");
-                }
+                checkLightOn(light, room);
             }
         }
     }
@@ -62,12 +57,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void turnOnLights(Room room) {
         for (Light light : lightsDevices) {
             if (light.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (!light.isOn()) {
-                    light.setOn(true);
-                    System.out.println("Lights on in " + room.getRoomName());
-                } else {
-                    System.out.println("Already on");
-                }
+                checkLightOff(light, room);
             }
         }
     }
@@ -84,12 +74,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void closeDoor(Room room) {
         for (Door door : doorsDevices) {
             if (door.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (door.isOpen()) {
-                    door.setOpen(false);
-                    System.out.println("Door closed in " + room.getRoomName());
-                } else {
-                    System.out.println("Already closed");
-                }
+                checkOpenDoor(door, room);
             }
         }
     }
@@ -98,12 +83,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void openDoor(Room room) {
         for (Door door : doorsDevices) {
             if (door.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (!door.isOpen()) {
-                    door.setOpen(true);
-                    System.out.println("Door opened in " + room.getRoomName());
-                } else {
-                    System.out.println("Already opened");
-                }
+                checkCloseDoor(door, room);
             }
         }
     }
@@ -112,16 +92,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void lockDoor(Room room) {
         for (Door door : doorsDevices) {
             if (door.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (!door.isOpen()) {
-                    if (!door.isLocked()) {
-                        door.setLocked(true);
-                        System.out.println("Door locked at " + room.getRoomName());
-                    } else {
-                        System.out.println("Already locked");
-                    }
-                } else {
-                    System.out.println("Cannot lock");
-                }
+                checkUnlockedDoor(door, room);
             }
         }
     }
@@ -130,16 +101,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void unlockDoor(Room room) {
         for (Door door : doorsDevices) {
             if (door.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (!door.isOpen()) {
-                    if (door.isLocked()) {
-                        door.setLocked(false);
-                        System.out.println("Door unlocked at " + room.getRoomName());
-                    } else {
-                        System.out.println("Already unlocked");
-                    }
-                } else {
-                    System.out.println("Cannot unlock");
-                }
+                checkLockedDoor(door, room);
             }
         }
     }
@@ -149,12 +111,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void openWindow(Room room) {
         for (Window window : windowsDevices) {
             if (window.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (!window.isOpen()) {
-                    window.setOpen(true);
-                    System.out.println("Window opened in " + room.getRoomName());
-                } else {
-                    System.out.println("Already opened");
-                }
+                checkClosedWindow(window, room);
             }
         }
     }
@@ -163,12 +120,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void closeWindow(Room room) {
         for (Window window : windowsDevices) {
             if (window.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (window.isOpen()) {
-                    window.setOpen(false);
-                    System.out.println("Window closed in " + room.getRoomName());
-                } else {
-                    System.out.println("Already closed");
-                }
+                checkOpenWindow(window, room);
             }
         }
     }
@@ -178,12 +130,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void startRecording(Room room) {
         for (Camera camera : camerasDevices) {
             if (camera.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (!camera.isRecording()) {
-                    camera.setRecording(true);
-                    System.out.println("Recording in process at " + room.getRoomName());
-                } else {
-                    System.out.println("Already recording");
-                }
+                checkNotRecording(camera, room);
             }
         }
     }
@@ -192,12 +139,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void stopRecording(Room room) {
         for (Camera camera : camerasDevices) {
             if (camera.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                if (camera.isRecording()) {
-                    camera.setRecording(false);
-                    System.out.println("Stopped recording at " + room.getRoomName());
-                } else {
-                    System.out.println("Camera is not recording");
-                }
+                checkRecording(camera, room);
             }
         }
     }
