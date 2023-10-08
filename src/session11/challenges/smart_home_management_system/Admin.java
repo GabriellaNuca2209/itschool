@@ -2,10 +2,9 @@ package session11.challenges.smart_home_management_system;
 
 import java.time.LocalDate;
 
-import static session11.challenges.smart_home_management_system.DeviceManagement.lightsDevices;
-import static session11.challenges.smart_home_management_system.DeviceManagement.thermostatsDevices;
+import static session11.challenges.smart_home_management_system.DeviceManagement.*;
 
-public class Admin extends User implements Lights, Thermostats {
+public class Admin extends User implements Lights, Thermostats, Doors {
 
     public Admin(String firstName, String lastName, LocalDate dateOfBirth) {
         super(firstName, lastName, dateOfBirth);
@@ -16,6 +15,8 @@ public class Admin extends User implements Lights, Thermostats {
             lightsDevices.add(device);
         } else if (device.getDeviceType().equalsIgnoreCase(thermostatType)) {
             thermostatsDevices.add(device);
+        } else if (device.getDeviceType().equalsIgnoreCase(doorType)) {
+            doorsDevices.add(device);
         }
     }
 
@@ -24,35 +25,25 @@ public class Admin extends User implements Lights, Thermostats {
             lightsDevices.remove(device);
         } else if (device.getDeviceType().equalsIgnoreCase(thermostatType)) {
             thermostatsDevices.remove(device);
+        } else if (device.getDeviceType().equalsIgnoreCase(doorType)) {
+            doorsDevices.remove(device);
         }
     }
 
     // LIGHTS SETTINGS
     @Override
     public void dimLights(Room room) {
-        for (Device device : lightsDevices) {
-            if (device.getRoom().getRoomName().equals(room.getRoomName())) {
-                System.out.println("Dimmed lights in " + room.getRoomName());
-            }
-        }
+        manipulateDevice(room, lightsDevices, "Dimmed lights in ");
     }
 
     @Override
     public void turnOffLights(Room room) {
-        for (Device device : lightsDevices) {
-            if (device.getRoom().getRoomName().equals(room.getRoomName())) {
-                System.out.println("Lights off in " + room.getRoomName());
-            }
-        }
+        manipulateDevice(room, lightsDevices, "Turned off lights in ");
     }
 
     @Override
     public void turnOnLights(Room room) {
-        for (Device device : lightsDevices) {
-            if (device.getRoom().getRoomName().equals(room.getRoomName())) {
-                System.out.println("Lights on in " + room.getRoomName());
-            }
-        }
+        manipulateDevice(room, lightsDevices, "Turned on lights in ");
     }
 
     // TEMPERATURE SETTINGS
@@ -65,11 +56,25 @@ public class Admin extends User implements Lights, Thermostats {
         }
     }
 
-    public void getLightsDevices() {
-        System.out.println(lightsDevices);
+    // DOOR SETTINGS
+    @Override
+    public void closeDoor(Room room) {
+        manipulateDevice(room, doorsDevices, "Door closed in ");
     }
 
-    public void getThermostatsDevices() {
-        System.out.println(thermostatsDevices);
+    @Override
+    public void openDoor(Room room) {
+        manipulateDevice(room, doorsDevices, "Door opened in ");
     }
+
+    @Override
+    public void lockDoor(Room room) {
+        manipulateDevice(room, doorsDevices, "Locked door in ");
+    }
+
+    @Override
+    public void unlockDoor(Room room) {
+        manipulateDevice(room, doorsDevices, "Unlocked door in ");
+    }
+
 }

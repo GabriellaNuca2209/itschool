@@ -11,4 +11,12 @@ public class DeviceManagement {
     public static List<Device> windowsDevices = new ArrayList<>();
     public static List<Device> camerasDevices = new ArrayList<>();
     public static List<Device> entertainmentDevices = new ArrayList<>();
+
+    public static void manipulateDevice(Room room, List<Device> deviceType, String message) {
+        for (Device device : deviceType) {
+            if (device.getRoom().getRoomName().equals(room.getRoomName())) {
+                System.out.println(message + room.getRoomName());
+            }
+        }
+    }
 }

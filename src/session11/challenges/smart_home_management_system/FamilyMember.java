@@ -2,8 +2,7 @@ package session11.challenges.smart_home_management_system;
 
 import java.time.LocalDate;
 
-import static session11.challenges.smart_home_management_system.DeviceManagement.lightsDevices;
-import static session11.challenges.smart_home_management_system.DeviceManagement.thermostatsDevices;
+import static session11.challenges.smart_home_management_system.DeviceManagement.*;
 
 public class FamilyMember extends User implements Lights, Thermostats {
 
@@ -14,29 +13,17 @@ public class FamilyMember extends User implements Lights, Thermostats {
     // LIGHTS SETTINGS
     @Override
     public void dimLights(Room room) {
-        for (Device device : lightsDevices) {
-            if (device.getRoom().getRoomName().equals(room.getRoomName())) {
-                System.out.println("Dimmed lights in " + room.getRoomName());
-            }
-        }
+        manipulateDevice(room, lightsDevices, "Dimmed lights in ");
     }
 
     @Override
     public void turnOffLights(Room room) {
-        for (Device device : lightsDevices) {
-            if (device.getRoom().getRoomName().equals(room.getRoomName())) {
-                System.out.println("Lights off in " + room.getRoomName());
-            }
-        }
+        manipulateDevice(room, lightsDevices, "Turned off lights in ");
     }
 
     @Override
     public void turnOnLights(Room room) {
-        for (Device device : lightsDevices) {
-            if (device.getRoom().getRoomName().equals(room.getRoomName())) {
-                System.out.println("Lights on in " + room.getRoomName());
-            }
-        }
+        manipulateDevice(room, lightsDevices, "Turned on lights in ");
     }
 
     // TEMPERATURE SETTINGS
