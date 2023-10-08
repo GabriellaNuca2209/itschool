@@ -1,7 +1,8 @@
 package session11.challenges.smart_home_management_system;
 
-public interface Thermostats {
+public interface ThermostatSys {
 
     String thermostatType = "Thermostat";
-    void setTemperature(double celsius, Room room);
+
+    void setTemperature(double celsius);
 }

@@ -1,6 +1,6 @@
 package session11.challenges.smart_home_management_system;
 
-public interface Doors {
+public interface DoorSys {
 
     String doorType = "Door";
 

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import static session11.challenges.smart_home_management_system.DeviceManagement.*;
 
-public class FamilyMember extends User implements Lights, Thermostats {
+public class FamilyMember extends User implements LightSys, ThermostatSys {
 
     public FamilyMember(String firstName, String lastName, LocalDate dateOfBirth) {
         super(firstName, lastName, dateOfBirth);
@@ -13,26 +13,26 @@ public class FamilyMember extends User implements Lights, Thermostats {
     // LIGHTS SETTINGS
     @Override
     public void dimLights(Room room) {
-        manipulateDevice(room, lightsDevices, "Dimmed lights in ");
+
+//        manipulateDevice(room, lightsDevices, "Dimmed lights in ");
     }
 
     @Override
     public void turnOffLights(Room room) {
-        manipulateDevice(room, lightsDevices, "Turned off lights in ");
+
+//        manipulateDevice(room, lightsDevices, "Turned off lights in ");
     }
 
     @Override
     public void turnOnLights(Room room) {
-        manipulateDevice(room, lightsDevices, "Turned on lights in ");
+
+//        manipulateDevice(room, lightsDevices, "Turned on lights in ");
     }
 
     // TEMPERATURE SETTINGS
     @Override
-    public void setTemperature(double celsius, Room room) {
-        for (Device device : thermostatsDevices) {
-            if (device.getRoom().getRoomName().equals(room.getRoomName())) {
-                System.out.println("Temperature set at " + celsius + "°C");
-            }
-        }
+    public void setTemperature(double celsius) {
+        temperature = celsius;
+        System.out.println("Temperature set at " + celsius + "°C");
     }
 }

@@ -1,6 +1,6 @@
 package session11.challenges.smart_home_management_system;
 
-public interface Lights {
+public interface LightSys {
 
     String lightType = "LIGHT";
 

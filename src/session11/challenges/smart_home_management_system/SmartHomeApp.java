@@ -2,8 +2,6 @@ package session11.challenges.smart_home_management_system;
 
 import java.time.LocalDate;
 
-import static session11.challenges.smart_home_management_system.DeviceManagement.*;
-
 public class SmartHomeApp {
 
     public static void main(String[] args) {
@@ -12,7 +10,7 @@ public class SmartHomeApp {
 
         // Rooms
         Room bedroom = new Room("Bedroom");
-        Room livingroom = new Room("Living room");
+        Room livingroom = new Room("Living Room");
         Room bathroom = new Room("Bathroom");
         Room kitchen = new Room("Kitchen");
         Room entrance = new Room("Entrance");
@@ -23,27 +21,21 @@ public class SmartHomeApp {
         Guest juan = new Guest("Susan", "Malloy", susanDate);
 
         // Devices
-        Device smartLight = new Device("Smart Light", "Light", bedroom);
-        Device smarterLight = new Device("Smarter Light", "Light", livingroom);
-        Device smartThermostat = new Device("Smart Thermostat", "Thermostat", livingroom);
-        Device smartDoor = new Device("Smart Door", "Door", entrance);
+        Light bedroomLight = new Light("Smart20", "Light", bedroom, true);
+        Thermostat bedroomThermostat = new Thermostat("Warm3000", "Thermostat", bedroom, true);
+        Window livingRoomWindow = new Window("SeeThrough", "Window", livingroom, true);
+        Door entranceDoor = new Door("NoPassing", "Door", entrance, true, false);
+        Camera entranceCamera = new Camera("ISeeYou", "Camera", entrance, false);
 
         // Adding devices
-        jonny.addDevice(smartLight);
-        jonny.addDevice(smarterLight);
-        jonny.addDevice(smartThermostat);
-        jonny.addDevice(smartDoor);
+        jonny.addLight(bedroomLight);
+        jonny.addThermostat(bedroomThermostat);
+        jonny.addWindow(livingRoomWindow);
+        jonny.addDoor(entranceDoor);
+        jonny.addCamera(entranceCamera);
 
         // Manipulating devices
-        jonny.dimLights(bedroom);
-        jonny.closeDoor(entrance);
-        jonny.lockDoor(entrance);
-
-        // Log devices
-        System.out.println(lightsDevices);
-        System.out.println(thermostatsDevices);
-        System.out.println(doorsDevices);
-
+        jonny.snapshot(entrance);
 
     }
 }
