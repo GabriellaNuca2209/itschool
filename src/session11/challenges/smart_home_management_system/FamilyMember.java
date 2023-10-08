@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import static session11.challenges.smart_home_management_system.DeviceManagement.*;
 import static session11.challenges.smart_home_management_system.DeviceManagement.entertainmentDevices;
+import static session11.challenges.smart_home_management_system.HomeLayout.roomList;
 
 public class FamilyMember extends User implements LightSys, ThermostatSys, DoorSys, WindowSys, EntertainmentSys {
 
@@ -11,11 +12,21 @@ public class FamilyMember extends User implements LightSys, ThermostatSys, DoorS
         super(firstName, lastName, dateOfBirth);
     }
 
+    public void setNightMode() {
+        for (Room room : roomList) {
+            dimLights(room);
+            setTemperature(23, room);
+            closeWindow(room);
+            closeDoor(room);
+            lockDoor(room);
+        }
+    }
+
     // LIGHTS SETTINGS
     @Override
     public void dimLights(Room room) {
-        for (Device device : lightsDevices) {
-            if (device.getRoom().getRoomName().equals(room.getRoomName())) {
+        for (Light light : lightsDevices) {
+            if (light.getRoom().getRoomName().equals(room.getRoomName())) {
                 System.out.println("Dimmed lights in " + room.getRoomName());
             }
         }
@@ -41,9 +52,13 @@ public class FamilyMember extends User implements LightSys, ThermostatSys, DoorS
 
     // TEMPERATURE SETTINGS
     @Override
-    public void setTemperature(double celsius, Thermostat thermostat) {
-        thermostat.setTemperature(celsius);
-        System.out.println("Temperature set at " + celsius + "°C");
+    public void setTemperature(double celsius, Room room) {
+        for (Thermostat thermostat : thermostatsDevices) {
+            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                thermostat.setTemperature(celsius);
+                System.out.println("Temperature set at " + celsius + "°C");
+            }
+        }
     }
 
     // DOOR SETTINGS

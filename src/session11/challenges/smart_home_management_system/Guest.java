@@ -80,8 +80,8 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
     @Override
     public void dimLights(Room room) {
         if (room.getRoomName().equalsIgnoreCase("living room")) {
-            for (Device device : lightsDevices) {
-                if (device.getRoom().getRoomName().equals(room.getRoomName())) {
+            for (Light light : lightsDevices) {
+                if (light.getRoom().getRoomName().equals(room.getRoomName())) {
                     System.out.println("Dimmed lights in " + room.getRoomName());
                 }
             }
@@ -113,8 +113,12 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
     }
 
     @Override
-    public void setTemperature(double celsius, Thermostat thermostat) {
-        thermostat.setTemperature(celsius);
-        System.out.println("Temperature set at " + celsius + "°C");
+    public void setTemperature(double celsius, Room room) {
+        for (Thermostat thermostat : thermostatsDevices) {
+            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                thermostat.setTemperature(celsius);
+                System.out.println("Temperature set at " + celsius + "°C");
+            }
+        }
     }
 }

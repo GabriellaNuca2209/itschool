@@ -17,23 +17,48 @@ public class SmartHomeApp {
 
         // Devices
         Light bedroomLight = new Light("Smart20", "Light", bedroom, true);
+        Light kitchenLight = new Light("Smart20", "Light", kitchen, true);
+        Light livingRoomLight = new Light("Smart20", "Light", livingroom, true);
+
         Thermostat bedroomThermostat = new Thermostat("Warm3000", "Thermostat", bedroom, true);
+        Thermostat livingRoomThermostat = new Thermostat("Warm3000", "Thermostat", livingroom, true);
+        Thermostat kitchenThermostat = new Thermostat("Warm3000", "Thermostat", kitchen, true);
+        Thermostat bathroomThermostat = new Thermostat("Warm3000", "Thermostat", bathroom, true);
+
         Window livingRoomWindow = new Window("SeeThrough", "Window", livingroom, true);
+        Window kitchenWindow = new Window("SeeThrough", "Window", kitchen, true);
+
         Door mainEntranceDoor = new Door("NoPassing", "Door", mainEntrance, true, false);
+        Door secondaryEntranceDoor = new Door("NoPassing", "Door", secondaryEntrance, true, false);
+
         Camera mainEntranceCamera = new Camera("ISeeYou", "Camera", mainEntrance, false);
+        Camera secondaryEntranceCamera = new Camera("ISeeYou", "Camera", secondaryEntrance, false);
+
         Entertainment livingRoomMainMusicSys = new Entertainment("Bass out", "Entertainment", livingroom, "music");
 
         // Adding devices
         jonny.addLight(bedroomLight);
+        jonny.addLight(kitchenLight);
+        jonny.addLight(livingRoomLight);
+
         jonny.addThermostat(bedroomThermostat);
+        jonny.addThermostat(livingRoomThermostat);
+        jonny.addThermostat(kitchenThermostat);
+        jonny.addThermostat(bathroomThermostat);
+
         jonny.addWindow(livingRoomWindow);
+        jonny.addWindow(kitchenWindow);
+
         jonny.addDoor(mainEntranceDoor);
+        jonny.addDoor(secondaryEntranceDoor);
+
         jonny.addCamera(mainEntranceCamera);
+        jonny.addCamera(secondaryEntranceCamera);
+
         jonny.addEntertainment(livingRoomMainMusicSys);
 
         // Manipulating devices
-        jonny.turnOffLights(bedroom);
-        jonny.turnOnLights(bedroom);
+        jonny.setNightMode();
 
     }
 }
