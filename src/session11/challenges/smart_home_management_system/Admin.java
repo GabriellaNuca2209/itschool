@@ -74,8 +74,8 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
 
     // TEMPERATURE SETTINGS
     @Override
-    public void setTemperature(double celsius) {
-        temperature = celsius;
+    public void setTemperature(double celsius, Thermostat thermostat) {
+        thermostat.setTemperature(celsius);
         System.out.println("Temperature set at " + celsius + "°C");
     }
 
@@ -214,11 +214,19 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     // ENTERTAINMENT SETTINGS
     @Override
     public void playMusic(Room room) {
-
+        for (Entertainment entertainment : entertainmentDevices) {
+            if (entertainment.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                System.out.println("Playing music");
+            }
+        }
     }
 
     @Override
     public void stopMusic(Room room) {
-
+        for (Entertainment entertainment : entertainmentDevices) {
+            if (entertainment.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                System.out.println("Stopped playing music");
+            }
+        }
     }
 }

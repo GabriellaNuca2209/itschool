@@ -4,5 +4,5 @@ public interface ThermostatSys {
 
     String thermostatType = "Thermostat";
 
-    void setTemperature(double celsius);
+    void setTemperature(double celsius, Thermostat thermostat);
 }

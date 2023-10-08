@@ -13,7 +13,8 @@ public class SmartHomeApp {
         Room livingroom = new Room("Living Room");
         Room bathroom = new Room("Bathroom");
         Room kitchen = new Room("Kitchen");
-        Room entrance = new Room("Entrance");
+        Room mainEntrance = new Room("Entrance");
+        Room secondaryEntrance = new Room("Entrance");
 
         // Users
         Admin jonny = new Admin("Jonny", "Test", jonnyDate);
@@ -24,18 +25,20 @@ public class SmartHomeApp {
         Light bedroomLight = new Light("Smart20", "Light", bedroom, true);
         Thermostat bedroomThermostat = new Thermostat("Warm3000", "Thermostat", bedroom, true);
         Window livingRoomWindow = new Window("SeeThrough", "Window", livingroom, true);
-        Door entranceDoor = new Door("NoPassing", "Door", entrance, true, false);
-        Camera entranceCamera = new Camera("ISeeYou", "Camera", entrance, false);
+        Door mainEntranceDoor = new Door("NoPassing", "Door", mainEntrance, true, false);
+        Camera mainEntranceCamera = new Camera("ISeeYou", "Camera", mainEntrance, false);
+        Entertainment livingRoomMainMusicSys = new Entertainment("Bass out", "Entertainment", livingroom, "music");
 
         // Adding devices
         jonny.addLight(bedroomLight);
         jonny.addThermostat(bedroomThermostat);
         jonny.addWindow(livingRoomWindow);
-        jonny.addDoor(entranceDoor);
-        jonny.addCamera(entranceCamera);
+        jonny.addDoor(mainEntranceDoor);
+        jonny.addCamera(mainEntranceCamera);
+        jonny.addEntertainment(livingRoomMainMusicSys);
 
         // Manipulating devices
-        jonny.snapshot(entrance);
+        jonny.snapshot(mainEntrance);
 
     }
 }
