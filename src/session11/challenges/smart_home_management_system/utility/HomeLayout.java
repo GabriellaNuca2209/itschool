@@ -1,4 +1,4 @@
-package session11.challenges.smart_home_management_system;
+package session11.challenges.smart_home_management_system.utility;
 
 import java.util.ArrayList;
 import java.util.List;

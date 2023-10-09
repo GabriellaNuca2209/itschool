@@ -1,8 +1,13 @@
 package session11.challenges.smart_home_management_system;
 
+import session11.challenges.smart_home_management_system.devices.*;
+import session11.challenges.smart_home_management_system.users.Admin;
+import session11.challenges.smart_home_management_system.users.FamilyMember;
+import session11.challenges.smart_home_management_system.users.Guest;
+
 import java.time.LocalDate;
 
-import static session11.challenges.smart_home_management_system.HomeLayout.*;
+import static session11.challenges.smart_home_management_system.utility.HomeLayout.*;
 
 public class SmartHomeApp {
 
@@ -58,7 +63,9 @@ public class SmartHomeApp {
         jonny.addEntertainment(livingRoomMainMusicSys);
 
         // Manipulating devices
-
+        jonny.turnOnLights(bedroom);
+        jonny.closeDoor(mainEntrance);
+        susan.closeDoor(mainEntrance);
 
     }
 }

@@ -1,8 +1,18 @@
-package session11.challenges.smart_home_management_system;
+package session11.challenges.smart_home_management_system.users;
+
+import session11.challenges.smart_home_management_system.device_system.DoorSys;
+import session11.challenges.smart_home_management_system.device_system.EntertainmentSys;
+import session11.challenges.smart_home_management_system.device_system.LightSys;
+import session11.challenges.smart_home_management_system.device_system.ThermostatSys;
+import session11.challenges.smart_home_management_system.devices.Door;
+import session11.challenges.smart_home_management_system.devices.Entertainment;
+import session11.challenges.smart_home_management_system.devices.Light;
+import session11.challenges.smart_home_management_system.devices.Thermostat;
+import session11.challenges.smart_home_management_system.utility.Room;
 
 import java.time.LocalDate;
 
-import static session11.challenges.smart_home_management_system.DeviceManagement.*;
+import static session11.challenges.smart_home_management_system.utility.DeviceManagement.*;
 
 public class Guest extends User implements LightSys, ThermostatSys, DoorSys, EntertainmentSys {
 

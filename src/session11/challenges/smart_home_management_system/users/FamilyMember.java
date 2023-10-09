@@ -1,44 +1,24 @@
-package session11.challenges.smart_home_management_system;
+package session11.challenges.smart_home_management_system.users;
+
+import session11.challenges.smart_home_management_system.device_system.*;
+import session11.challenges.smart_home_management_system.devices.*;
+import session11.challenges.smart_home_management_system.utility.Room;
 
 import java.time.LocalDate;
 
-import static session11.challenges.smart_home_management_system.DeviceManagement.*;
-import static session11.challenges.smart_home_management_system.HomeLayout.roomList;
+import static session11.challenges.smart_home_management_system.utility.DeviceManagement.*;
+import static session11.challenges.smart_home_management_system.utility.DeviceManagement.entertainmentDevices;
+import static session11.challenges.smart_home_management_system.utility.HomeLayout.roomList;
 
-public class Admin extends User implements LightSys, ThermostatSys, DoorSys, WindowSys, CameraSys, EntertainmentSys {
+public class FamilyMember extends User implements LightSys, ThermostatSys, DoorSys, WindowSys, EntertainmentSys {
 
-    public Admin(String firstName, String lastName, LocalDate dateOfBirth) {
+    public FamilyMember(String firstName, String lastName, LocalDate dateOfBirth) {
         super(firstName, lastName, dateOfBirth);
-    }
-
-    public void addLight(Light light) {
-        lightsDevices.add(light);
-    }
-
-    public void addThermostat(Thermostat thermostat) {
-        thermostatsDevices.add(thermostat);
-    }
-
-    public void addDoor(Door door) {
-        doorsDevices.add(door);
-    }
-
-    public void addWindow(Window window) {
-        windowsDevices.add(window);
-    }
-
-    public void addCamera(Camera camera) {
-        camerasDevices.add(camera);
-    }
-
-    public void addEntertainment(Entertainment entertainment) {
-        entertainmentDevices.add(entertainment);
     }
 
     public void setNightMode() {
         for (Room room : roomList) {
             dimLights(room);
-            turnOnThermostat(room);
             setTemperature(23, room);
             closeWindow(room);
             closeDoor(room);
@@ -78,9 +58,9 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     @Override
     public void setTemperature(double celsius, Room room) {
         for (Thermostat thermostat : thermostatsDevices) {
-            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName()) && thermostat.isOn()) {
+            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
                 thermostat.setTemperature(celsius);
-                System.out.println("Temperature set at " + celsius + "°C in " + room.getRoomName());
+                System.out.println("Temperature set at " + celsius + "°C");
             }
         }
     }
@@ -155,34 +135,6 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
         for (Window window : windowsDevices) {
             if (window.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
                 checkOpenWindow(window, room);
-            }
-        }
-    }
-
-    // CAMERA SETTINGS
-    @Override
-    public void startRecording(Room room) {
-        for (Camera camera : camerasDevices) {
-            if (camera.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                checkNotRecording(camera, room);
-            }
-        }
-    }
-
-    @Override
-    public void stopRecording(Room room) {
-        for (Camera camera : camerasDevices) {
-            if (camera.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                checkRecording(camera, room);
-            }
-        }
-    }
-
-    @Override
-    public void snapshot(Room room) {
-        for (Camera camera : camerasDevices) {
-            if (camera.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
-                System.out.println("Camera took a picture, pose!");
             }
         }
     }
