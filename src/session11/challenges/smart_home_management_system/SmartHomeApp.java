@@ -66,6 +66,6 @@ public class SmartHomeApp {
         jonny.turnOnLights(bedroom);
         jonny.closeDoor(mainEntrance);
         susan.closeDoor(mainEntrance);
-
+        susan.setNightMode();
     }
 }

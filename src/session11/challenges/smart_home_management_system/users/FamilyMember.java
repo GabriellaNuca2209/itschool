@@ -19,6 +19,7 @@ public class FamilyMember extends User implements LightSys, ThermostatSys, DoorS
     public void setNightMode() {
         for (Room room : roomList) {
             dimLights(room);
+            turnOnThermostat(room);
             setTemperature(23, room);
             closeWindow(room);
             closeDoor(room);
