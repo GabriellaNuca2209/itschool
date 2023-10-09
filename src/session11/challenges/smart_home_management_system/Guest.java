@@ -10,7 +10,6 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
         super(firstName, lastName, dateOfBirth);
     }
 
-
     @Override
     public void closeDoor(Room room) {
         for (Door door : doorsDevices) {
@@ -97,6 +96,8 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
                 if (light.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
                     checkLightOn(light, room);
                 }
+            } else {
+                System.out.println("Access denied");
             }
         }
     }
@@ -108,6 +109,8 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
                 if (light.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
                     checkLightOff(light, room);
                 }
+            } else {
+                System.out.println("Access denied");
             }
         }
     }
@@ -118,6 +121,32 @@ public class Guest extends User implements LightSys, ThermostatSys, DoorSys, Ent
             if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
                 thermostat.setTemperature(celsius);
                 System.out.println("Temperature set at " + celsius + "°C");
+            }
+        }
+    }
+
+    @Override
+    public void turnOnThermostat(Room room) {
+        for (Thermostat thermostat : thermostatsDevices) {
+            if (!room.getRoomName().equalsIgnoreCase("bedroom")) {
+                if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                    checkThermostatOff(thermostat, room);
+                }
+            } else {
+                System.out.println("Access denied");
+            }
+        }
+    }
+
+    @Override
+    public void turnOffThermostat(Room room) {
+        for (Thermostat thermostat : thermostatsDevices) {
+            if (!room.getRoomName().equalsIgnoreCase("bedroom")) {
+                if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                    checkThermostatOn(thermostat, room);
+                }
+            } else {
+                System.out.println("Access denied");
             }
         }
     }

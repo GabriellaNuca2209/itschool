@@ -30,6 +30,24 @@ public class DeviceManagement {
         }
     }
 
+    public static void checkThermostatOn(Thermostat thermostat, Room room) {
+        if (thermostat.isOn()) {
+            thermostat.setOn(false);
+            System.out.println("Thermostat off in " + room.getRoomName());
+        } else {
+            System.out.println("Already off");
+        }
+    }
+
+    public static void checkThermostatOff(Thermostat thermostat, Room room) {
+        if (!thermostat.isOn()) {
+            thermostat.setOn(true);
+            System.out.println("Thermostat on in " + room.getRoomName());
+        } else {
+            System.out.println("Already on");
+        }
+    }
+
     public static void checkOpenDoor(Door door, Room room) {
         if (door.isOpen()) {
             door.setOpen(false);

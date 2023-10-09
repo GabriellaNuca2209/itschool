@@ -58,7 +58,7 @@ public class SmartHomeApp {
         jonny.addEntertainment(livingRoomMainMusicSys);
 
         // Manipulating devices
-        jonny.setNightMode();
+
 
     }
 }

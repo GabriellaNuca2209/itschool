@@ -38,6 +38,7 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     public void setNightMode() {
         for (Room room : roomList) {
             dimLights(room);
+            turnOnThermostat(room);
             setTemperature(23, room);
             closeWindow(room);
             closeDoor(room);
@@ -77,9 +78,27 @@ public class Admin extends User implements LightSys, ThermostatSys, DoorSys, Win
     @Override
     public void setTemperature(double celsius, Room room) {
         for (Thermostat thermostat : thermostatsDevices) {
-            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName()) && thermostat.isOn()) {
                 thermostat.setTemperature(celsius);
                 System.out.println("Temperature set at " + celsius + "°C in " + room.getRoomName());
+            }
+        }
+    }
+
+    @Override
+    public void turnOnThermostat(Room room) {
+        for (Thermostat thermostat : thermostatsDevices) {
+            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                checkThermostatOff(thermostat, room);
+            }
+        }
+    }
+
+    @Override
+    public void turnOffThermostat(Room room) {
+        for (Thermostat thermostat : thermostatsDevices) {
+            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                checkThermostatOn(thermostat, room);
             }
         }
     }

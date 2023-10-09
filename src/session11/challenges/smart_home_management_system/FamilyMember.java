@@ -61,6 +61,24 @@ public class FamilyMember extends User implements LightSys, ThermostatSys, DoorS
         }
     }
 
+    @Override
+    public void turnOnThermostat(Room room) {
+        for (Thermostat thermostat : thermostatsDevices) {
+            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                checkThermostatOff(thermostat, room);
+            }
+        }
+    }
+
+    @Override
+    public void turnOffThermostat(Room room) {
+        for (Thermostat thermostat : thermostatsDevices) {
+            if (thermostat.getRoom().getRoomName().equalsIgnoreCase(room.getRoomName())) {
+                checkThermostatOn(thermostat, room);
+            }
+        }
+    }
+
     // DOOR SETTINGS
     @Override
     public void closeDoor(Room room) {
