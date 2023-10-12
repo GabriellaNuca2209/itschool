@@ -1,30 +1,24 @@
 package fitnessCenterChallenge.models;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Activity {
 
-    private String activityName;
+    private String name;
     private List<Member> memberList;
-    private Trainer trainer;
 
-    public Activity (String activityName) {
-        this.activityName = activityName;
+    public Activity(String name) {
+        this.name = name;
         memberList = new ArrayList<>();
     }
 
-    public void addMemberToActivity(Member member) {
-        memberList.add(member);
+    public String getName() {
+        return name;
     }
 
-    public String getActivityName() {
-        return activityName;
-    }
-
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Member> getMemberList() {
@@ -33,22 +27,5 @@ public class Activity {
 
     public void setMemberList(List<Member> memberList) {
         this.memberList = memberList;
-    }
-
-    public Trainer getTrainer() {
-        return trainer;
-    }
-
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
-    }
-
-    @Override
-    public String toString() {
-        return "Activity{" +
-                "activityName='" + activityName + '\'' +
-                ", memberList=" + memberList +
-                ", trainer=" + trainer +
-                '}';
     }
 }
