@@ -1,0 +1,17 @@
+package session14_collections.challenges.arrayList;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ElementRemover {
+
+    public static void main(String[] args) {
+        List<String> myList = new ArrayList<>();
+        myList.add("red");
+        myList.add("green");
+        myList.add("blue");
+
+        myList.remove(2);
+        System.out.println(myList);
+    }
+}
